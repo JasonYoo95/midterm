@@ -10,6 +10,8 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
+import midterm.problem2.RegularExpression;
+
 /**
  * Hello world!
  *
@@ -19,7 +21,7 @@ public class App
     public static void main( String[] args )
     {
     	Scanner scan = new Scanner(System.in);
-    	System.out.print("Enter the keyword you are looking for : ");
+    	System.out.print("Enter the pattern you are looking for : ");
     	String word = scan.next();
     	
     	JSONParser jsonParser = new JSONParser();
@@ -46,10 +48,12 @@ public class App
     	for (int i = 0; i < infoArray.size(); i++) {
 			JSONObject itemObject = (JSONObject) infoArray.get(i);
 			String temp = (String) itemObject.get("item");
-			if(temp.contains(word)) {
-				System.out.print("item "+i + ": ");
+			
+			RegularExpression re = new RegularExpression();
+		   if (re.check(temp, word)){
+			   System.out.print("item "+i + ": ");
 				System.out.println(temp);
-			}
+		   }
 		}
     	
     }
